@@ -7,12 +7,9 @@ const todoModel = require("../models/todo");
  */
 exports.getAllTodos = async (req, res, next) => {
   try {
-    const todos = await todoModel.find();
+    //const todos = await todoModel.find();
 
-    res.status(200).json({
-      sucess: true,
-      data: todos,
-    });
+    res.status(200).json(res.advanceResults);
   } catch (error) {
     next(error);
   }

@@ -8,7 +8,14 @@ const {
 
 const router = express.Router();
 
-router.route("/").get(getAllTodos).post(createTodo);
+//import middleware and model
+const advanceFiltering = require("../middleware/advancefiltering");
+const todoModel = require("../models/todo");
+
+router
+  .route("/")
+  .get(advanceFiltering(todoModel), getAllTodos)
+  .post(createTodo);
 router.route("/:id").put(updateTodo).delete(deleteTodo);
 
 module.exports = router;
