@@ -15,8 +15,8 @@ const todos = require("./routes/todos");
 //middlewares and routes
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(errorHandler);
 app.use("/api/v1/todos", todos);
+app.use(errorHandler);
 connectDB();
 
 const port = process.env.PORT || 5000;

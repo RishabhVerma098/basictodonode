@@ -3,15 +3,14 @@ const mongoose = require("mongoose");
 const TodoSchema = new mongoose.Schema({
   title: {
     type: String,
-    required: true,
-    validate: [true, "Please provide title"],
+    required: [true, "Please provide title"],
     trim: true,
     maxlength: [50, "length cannot be more than 50"],
+    unique: true,
   },
   description: {
     type: String,
-    required: true,
-    validate: [true, "Please provide description"],
+    required: [true, "Please provide description"],
     maxlength: [200, "length cannot be more than 200"],
   },
   status: {
@@ -24,7 +23,7 @@ const TodoSchema = new mongoose.Schema({
   Priority: {
     type: [String],
     enum: ["high", "medium", "low"],
-    default: low,
+    default: "low",
   },
   createdAt: {
     type: Date,
