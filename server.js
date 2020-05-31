@@ -7,6 +7,7 @@ const app = express();
 //import dotenv and others
 dotenv.config({ path: "./config/config.env" });
 const errorHandler = require("./middleware/errorHandler");
+const connectDB = require("./config/db");
 
 //routes import
 const todos = require("./routes/todos");
@@ -16,6 +17,7 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(errorHandler);
 app.use("/api/v1/todos", todos);
+connectDB();
 
 const port = process.env.PORT || 5000;
 
