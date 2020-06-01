@@ -11,11 +11,13 @@ const connectDB = require("./config/db");
 
 //routes import
 const todos = require("./routes/todos");
+const user = require("./routes/user");
 
 //middlewares and routes
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/api/v1/todos", todos);
+app.use("/api/v1/auth", user);
 app.use(errorHandler);
 connectDB();
 
