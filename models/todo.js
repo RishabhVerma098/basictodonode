@@ -25,6 +25,11 @@ const TodoSchema = new mongoose.Schema({
     enum: ["high", "medium", "low"],
     default: "low",
   },
+  user: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

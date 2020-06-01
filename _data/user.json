@@ -1,0 +1,20 @@
+[
+  {
+    "_id": "5ed4b6cdfc13ae14de000003",
+    "name": "john doe",
+    "email": "john@gmail.com",
+    "password": "alpha098"
+  },
+  {
+    "_id": "5ed4b6cdfc13ae14de000004",
+    "name": "rishabh",
+    "email": "rishabh@yahoo.com",
+    "password": "alpha098"
+  },
+  {
+    "_id": "5ed4b6cdfc13ae14de000005",
+    "name": "sanchit",
+    "email": "sanchit@gmail.com",
+    "password": "alpha098"
+  }
+]
