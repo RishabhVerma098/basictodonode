@@ -17,6 +17,9 @@ router
   .route("/")
   .get(protectRoute, advanceFiltering(todoModel, "user"), getAllTodos)
   .post(protectRoute, createTodo);
-router.route("/:id").put(updateTodo).delete(deleteTodo);
+router
+  .route("/:id")
+  .put(protectRoute, updateTodo)
+  .delete(protectRoute, deleteTodo);
 
 module.exports = router;
