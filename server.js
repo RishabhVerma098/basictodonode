@@ -2,6 +2,8 @@ const express = require("express");
 const color = require("colors");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
+const swaggerUi = require("swagger-ui-express");
+const swaggerDocument = require("./docs.json");
 const app = express();
 
 //scurity imports
@@ -18,8 +20,12 @@ const errorHandler = require("./middleware/errorHandler");
 const connectDB = require("./config/db");
 
 //routes import
+var options = {
+  customCss: ".swagger-ui .topbar { display: none }",
+};
 const todos = require("./routes/todos");
 const user = require("./routes/user");
+app.use("/", swaggerUi.serve, swaggerUi.setup(swaggerDocument, options));
 
 //sccurity middleware
 app.use(mongoSanitize());
