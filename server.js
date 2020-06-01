@@ -4,6 +4,14 @@ const dotenv = require("dotenv");
 const morgan = require("morgan");
 const app = express();
 
+//scurity imports
+const mongoSanitize = require("express-mongo-sanitize");
+const helmet = require("helmet");
+const xss = require("xss-clean");
+const hpp = require("hpp");
+const rateLimit = require("express-rate-limit");
+const cors = require("cors");
+
 //import dotenv and others
 dotenv.config({ path: "./config/config.env" });
 const errorHandler = require("./middleware/errorHandler");
@@ -13,12 +21,27 @@ const connectDB = require("./config/db");
 const todos = require("./routes/todos");
 const user = require("./routes/user");
 
+//sccurity middleware
+app.use(mongoSanitize());
+app.use(helmet());
+app.use(xss());
+
+const rate = rateLimit({
+  windowMs: 10 * 60 * 1000, //10 min
+  max: 100,
+});
+app.use(rate);
+app.use(hpp());
+app.use(cors());
+
 //middlewares and routes
 app.use(morgan("dev"));
 app.use(express.json());
 app.use("/api/v1/todos", todos);
 app.use("/api/v1/auth", user);
 app.use(errorHandler);
+
+//connect to database
 connectDB();
 
 const port = process.env.PORT || 5000;
