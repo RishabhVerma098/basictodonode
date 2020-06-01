@@ -79,6 +79,7 @@ exports.loginUser = async (req, res, next) => {
  */
 exports.getMe = async (req, res, next) => {
   try {
+    console.log(req.user.id);
     const user = await userModel.findById(req.user.id);
 
     res.status(200).json({

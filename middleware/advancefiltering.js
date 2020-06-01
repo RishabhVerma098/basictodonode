@@ -60,7 +60,6 @@ const advanceFiltering = (model, populate) => async (req, res, next) => {
     };
   }
 
-  //await for everything (bootcampModel , .select)
   const results = await query;
 
   res.advanceResults = {

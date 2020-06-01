@@ -7,9 +7,20 @@ const todoModel = require("../models/todo");
  */
 exports.getAllTodos = async (req, res, next) => {
   try {
-    //const todos = await todoModel.find();
+    let results = res.advanceResults.data;
+    let id = req.user.id;
 
-    res.status(200).json(res.advanceResults);
+    const data = results.filter(function (value) {
+      if (value.user._id.toString() === id) {
+        return value;
+      }
+    });
+    res.status(200).json({
+      sucess: res.advanceResults.sucess,
+      count: data.length,
+      pagination: res.advanceResults.pagination,
+      data: data,
+    });
   } catch (error) {
     next(error);
   }
@@ -22,6 +33,8 @@ exports.getAllTodos = async (req, res, next) => {
  */
 exports.createTodo = async (req, res, next) => {
   try {
+    req.body.user = req.user.id;
+
     const todo = await todoModel.create(req.body);
 
     res.status(200).json({
