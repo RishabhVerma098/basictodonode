@@ -38,9 +38,9 @@ node seeder -i
 
 ## Demo
 
-The API is live at [devcamper.io]()
+The API is live at [website](https://todobasicapp.herokuapp.com/)
 
-Extensive documentation with examples [here]()
+Extensive documentation with examples [here](https://documenter.getpostman.com/view/6681850/SztEanUh?version=latest)
 
 - Version: 1.0.0
 - License: MIT
